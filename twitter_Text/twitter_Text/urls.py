@@ -19,5 +19,5 @@ from text_detect import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('text_detect/detect/', views.detect)# TODO add the correct detection method
+    path('text_detect/detect/', views.detect),# TODO add the correct detection method
 ]

@@ -132,6 +132,7 @@ class _TextFieldState extends State<TextField> {
                   if (username.length<2){
                     print('less')
                     }else{
+                    print(username),
                     Navigator.of(context).pop(),
                   Navigator.pushNamed(context, '/user_stat', arguments: {'username': username})
                   }}),
