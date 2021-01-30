@@ -19,6 +19,20 @@ class NavBar extends StatelessWidget {
                 image: AssetImage('assets/images/space1.jpg'),),
             ),
           ),
+          ListTile(
+            leading: Icon(Icons.account_balance_outlined),
+            title: Text('About'),
+            onTap: () => {Navigator.of(context).pop(),
+              Navigator.pushNamed(context, '/about'),
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Settings'),
+            onTap: () => {Navigator.of(context).pop(),
+              Navigator.pushNamed(context, '/settings'),
+            },
+          ),
         ],
       ),
     );
