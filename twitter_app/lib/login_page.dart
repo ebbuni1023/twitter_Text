@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -52,7 +53,13 @@ class _LoginPageState extends State<LoginPage> {
                   'Login',
                   style: new TextStyle(fontSize: 20.0),
                 ),
-                onPressed: validateAndSave,
+                //onPressed: validateAndSave,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => home_page()),
+                  );
+                },
               ),
             ],
           ),
