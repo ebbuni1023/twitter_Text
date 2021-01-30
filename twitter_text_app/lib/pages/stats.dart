@@ -6,7 +6,7 @@ import 'package:flutter_echarts/flutter_echarts.dart';
 import 'dart:convert';
 import 'dart:io';
 
-
+var neeed_data;
 var username;
 
 class Stats extends StatefulWidget {
@@ -63,7 +63,13 @@ Future<http.Response> postRequest() async {
   );
   print("${response.statusCode}");
   //this is where you will get the data for charts
+  //You also need to decode the json data
   print("${response.body}");
+  //json data is decoded like this
+  print("${json.decode(response.body)['success']}");
+  //Here is the data you will use for the chart
+  neeed_data=json.decode(response.body);
+
   return response;
 }
 
