@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+//import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Stat_page extends StatefulWidget {
@@ -17,28 +18,28 @@ class _HomePageState extends State<Stat_page> {
 
   _generateData() {
     var data1 = [
-      new Pollution(1980, 'USA', 30),
-      new Pollution(1980, 'Asia', 40),
-      new Pollution(1980, 'Europe', 10),
+      new Pollution(1980, 'Last Week', 30),
+      new Pollution(1980, 'Yesterday', 40),
+      new Pollution(1980, 'Today', 10),
     ];
     var data2 = [
-      new Pollution(1985, 'USA', 100),
-      new Pollution(1980, 'Asia', 150),
-      new Pollution(1985, 'Europe', 80),
+      new Pollution(1985, 'Last Week', 100),
+      new Pollution(1980, 'Yesterday', 150),
+      new Pollution(1985, 'Today', 80),
     ];
     var data3 = [
-      new Pollution(1985, 'USA', 200),
-      new Pollution(1980, 'Asia', 300),
-      new Pollution(1985, 'Europe', 180),
+      new Pollution(1985, 'Last Week', 200),
+      new Pollution(1980, 'Yesterday', 300),
+      new Pollution(1985, 'Today', 180),
     ];
 
     var piedata = [
-      new Task('Work', 35.8, Color(0xff3366cc)),
-      new Task('Eat', 8.3, Color(0xff990099)),
-      new Task('Commute', 10.8, Color(0xff109618)),
-      new Task('TV', 15.6, Color(0xfffdbe19)),
-      new Task('Sleep', 19.2, Color(0xffff9900)),
-      new Task('Other', 10.3, Color(0xffdc3912)),
+      new Task('Sad', 35.8, Color(0xff3366cc)),
+      new Task('Neutral', 8.3, Color(0xff990099)),
+      new Task('Shock', 10.8, Color(0xff109618)),
+      new Task('Happiness', 15.6, Color(0xfffdbe19)),
+      new Task('Depressed', 19.2, Color(0xffff9900)),
+      new Task('Anger', 10.3, Color(0xffdc3912)),
     ];
 
     var linesalesdata = [
@@ -126,7 +127,7 @@ class _HomePageState extends State<Stat_page> {
     );
     _seriesLineData.add(
       charts.Series(
-        colorFn: (__, _) => charts.ColorUtil.fromDartColor(Color(0xff109618)),
+        colorFn: (__, _) => charts.ColorUtil.fromDartColor(Color(0xffdc3912)),
         id: 'Air Pollution',
         data: linesalesdata1,
         domainFn: (Sales sales, _) => sales.yearval,
@@ -146,7 +147,6 @@ class _HomePageState extends State<Stat_page> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _seriesData = List<charts.Series<Pollution, String>>();
     _seriesPieData = List<charts.Series<Task, String>>();
@@ -161,10 +161,9 @@ class _HomePageState extends State<Stat_page> {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Color(0xff1976d2),
-            //backgroundColor: Color(0xff308e1c),
+            leading: new Container(),
+            backgroundColor: Colors.lightBlue,
             bottom: TabBar(
-              indicatorColor: Color(0xff9962D0),
               tabs: [
                 Tab(
                   icon: Icon(Icons.ac_unit_rounded),
@@ -173,7 +172,7 @@ class _HomePageState extends State<Stat_page> {
                 Tab(icon: Icon(FontAwesomeIcons.chartLine)),
               ],
             ),
-            title: Text('User\'s stat'),
+            title: Text('Twitter Stats'),
           ),
           body: TabBarView(
             children: [
@@ -184,7 +183,7 @@ class _HomePageState extends State<Stat_page> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'SO₂ emissions, by world region (in million tonnes)',
+                          'Overview of Stats',
                           style: TextStyle(
                               fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
@@ -193,7 +192,7 @@ class _HomePageState extends State<Stat_page> {
                             _seriesData,
                             animate: true,
                             barGroupingType: charts.BarGroupingType.grouped,
-                            animationDuration: Duration(seconds: 5),
+                            animationDuration: Duration(seconds: 2),
                           ),
                         ),
                       ],
@@ -208,7 +207,7 @@ class _HomePageState extends State<Stat_page> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'Time spent on daily tasks',
+                          'Sentiment Breakdown',
                           style: TextStyle(
                               fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
@@ -218,7 +217,7 @@ class _HomePageState extends State<Stat_page> {
                         Expanded(
                           child: charts.PieChart(_seriesPieData,
                               animate: true,
-                              animationDuration: Duration(seconds: 5),
+                              animationDuration: Duration(seconds: 3),
                               behaviors: [
                                 new charts.DatumLegend(
                                   outsideJustification:
@@ -254,33 +253,29 @@ class _HomePageState extends State<Stat_page> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'Sales for the first 5 years',
+                          'Top Sentiment Contributors',
                           style: TextStyle(
                               fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
                         Expanded(
                           child: charts.LineChart(_seriesLineData,
                               defaultRenderer: new charts.LineRendererConfig(
-                                  includeArea: true, stacked: true),
+                                includeArea: true,
+                                stacked: true,
+                              ),
                               animate: true,
-                              animationDuration: Duration(seconds: 5),
+                              animationDuration: Duration(seconds: 3),
                               behaviors: [
-                                new charts.ChartTitle('Years',
+                                new charts.ChartTitle('Contributor',
                                     behaviorPosition:
                                         charts.BehaviorPosition.bottom,
                                     titleOutsideJustification: charts
                                         .OutsideJustification.middleDrawArea),
-                                new charts.ChartTitle('Sales',
+                                new charts.ChartTitle('Feeling',
                                     behaviorPosition:
                                         charts.BehaviorPosition.start,
                                     titleOutsideJustification: charts
                                         .OutsideJustification.middleDrawArea),
-                                new charts.ChartTitle(
-                                  'Departments',
-                                  behaviorPosition: charts.BehaviorPosition.end,
-                                  titleOutsideJustification: charts
-                                      .OutsideJustification.middleDrawArea,
-                                )
                               ]),
                         ),
                       ],
@@ -313,6 +308,7 @@ class Task {
 }
 
 class Sales {
+  String feeling;
   int yearval;
   int salesval;
 

@@ -16,7 +16,7 @@ class Home_page extends StatelessWidget {
               MaterialPageRoute(builder: (context) => Stat_page()),
             );
           },
-          child: Text('stat Graph'),
+          child: Text('Run Analysis'),
         ),
       ),
     );
