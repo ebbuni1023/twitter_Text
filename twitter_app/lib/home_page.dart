@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:twitter_app/stats.dart';
 
-class home_page extends StatelessWidget {
+class Home_page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +13,7 @@ class home_page extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => stat_page()),
+              MaterialPageRoute(builder: (context) => Stat_page()),
             );
           },
           child: Text('stat Graph'),
