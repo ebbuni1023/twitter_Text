@@ -16,3 +16,19 @@ class Stat_page extends StatelessWidget {
     );
   }
 }
+
+class State_page extends StatefulWidget {
+  State_page ({Key key, this.title}) : super(key: key);
+  final String title;
+}
+class _StatePageState extends State<State_page> {
+  int _counter = 0;
+  void initState()
+  {
+    setState((){
+      var data = [
+        addcharts("val 1")
+      ];
+    })
+  }
+}
