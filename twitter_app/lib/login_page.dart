@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('login demo'),
+        title: new Text('Registration'),
       ),
       body: new Container(
         padding: EdgeInsets.all(16),
